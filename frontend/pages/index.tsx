@@ -1,17 +1,29 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.scss';
 import AddImageForm from '../src/components/AddImageForm';
+import { getImages } from '../src/api/images';
 
 export interface ImageType {
   title: string;
   id: number;
-  path: string;
+  url: string;
+  description: string | null;
+  liked: boolean;
+  createdAt: string;
 }
 
 const Home: NextPage = () => {
+  const [images, setImages] = useState<ImageType[]>([]);
+
+  useEffect(() => {
+    getImages().then((images: []) => {
+      setImages(images);
+    });
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +34,12 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <AddImageForm />
-        <div>hello</div>
+        <div>
+          {images?.length !== 0 &&
+            images.map((image) => (
+              <Image src={image.url} alt="img" width={200} height={200} />
+            ))}
+        </div>
       </main>
 
       <footer className={styles.footer}></footer>
