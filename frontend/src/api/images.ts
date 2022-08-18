@@ -54,7 +54,7 @@ export const getImageById = async (id: number) => {
   return formImageObj(data);
 };
 
-export const createImage = (data: any) =>
+export const createImage = (data: FormData) =>
   axios({
     method: 'POST',
     url: `${url}${apiUrl}`,

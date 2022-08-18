@@ -5,7 +5,7 @@ import axios from 'axios';
 const AddImageForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState<any>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState('');
 
   const disabled = !file || !title;
@@ -29,15 +29,27 @@ const AddImageForm = () => {
   };
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setFile(event.target.files[0]);
-      setPreview(URL.createObjectURL(event.target.files[0]));
+    if (!event.target.files[0]) {
+      setPreview('');
+      setFile(null);
+      return;
     }
+    setFile(event.target.files[0]);
+    setPreview(URL.createObjectURL(event.target.files[0]));
   };
 
   return (
     <form onSubmit={handleCreatePost}>
-      <input type="text" onChange={(e) => setTitle(e?.target.value)} />
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e?.target.value)}
+      />
+
+      <textarea
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
       <input
         type="file"
