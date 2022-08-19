@@ -2,7 +2,6 @@ import styles from './Button.module.scss';
 
 type Props = {
   label?: string;
-  icon?: string;
   name?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
@@ -12,7 +11,6 @@ type Props = {
 
 const Button = ({
   label,
-  icon,
   name,
   onClick,
   active,
@@ -29,7 +27,6 @@ const Button = ({
       } ${className}`}
       disabled={disabled}
     >
-      {icon && <img src={icon} alt="img" />}
       {label}
     </button>
   );

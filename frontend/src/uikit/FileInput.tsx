@@ -1,4 +1,3 @@
-import Button from './Button';
 import styles from './FileInput.module.scss';
 
 type Props = {
