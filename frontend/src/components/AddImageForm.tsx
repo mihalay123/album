@@ -1,17 +1,29 @@
 import { useState } from 'react';
-import { createImage } from '../api/images';
+import { createImage, getImages } from '../api/images';
 import FileInput from '../uikit/FileInput';
 import Input from '../uikit/Input';
 import Textarea from '../uikit/Textarea';
 
+import { ImageType } from '../../pages';
 import styles from './AddImageForm.module.scss';
+import buttonStyles from '../uikit/Button.module.scss';
 
-const AddImageForm = () => {
+interface Props {
+  setImages: React.Dispatch<React.SetStateAction<ImageType[]>>;
+}
+
+const AddImageForm = ({ setImages }: Props) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<File | null>(null);
 
   const disabled = !file || !title;
+
+  const clearForm = () => {
+    setTitle('');
+    setDescription('');
+    setFile(null);
+  };
 
   const handleCreatePost = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,7 +42,10 @@ const AddImageForm = () => {
     formData.append('data', JSON.stringify(data));
     formData.append('files.image', file, file.name);
 
-    await createImage(formData);
+    await createImage(formData).then(() => {
+      clearForm();
+      getImages().then((images) => setImages(images));
+    });
   };
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,6 +60,8 @@ const AddImageForm = () => {
 
   return (
     <form onSubmit={handleCreatePost} className={styles.form}>
+      <h3>Post new Image</h3>
+
       <div className={styles.inputs}>
         <Input
           type="text"
@@ -58,17 +75,19 @@ const AddImageForm = () => {
           placeholder="Description"
           onChange={(e) => setDescription(e.target.value)}
         />
-      </div>
 
-      <div className={styles.file}>
         <FileInput
           accept="image/png, image/gif, image/jpeg"
           onChange={onFileChange}
           file={file}
         />
-      </div>
 
-      <input type="submit" disabled={disabled} />
+        <input
+          type="submit"
+          className={buttonStyles.button}
+          disabled={disabled}
+        />
+      </div>
     </form>
   );
 };

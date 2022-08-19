@@ -6,7 +6,7 @@ type Props = {
   name?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   active?: boolean;
-  disabled: boolean;
+  disabled?: boolean;
   className?: string;
 };
 
