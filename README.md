@@ -32,7 +32,8 @@ yarn start
 ### Homepage mobile
 <img width="403" alt="image" src="https://user-images.githubusercontent.com/45885777/185654853-6c98b4fa-17f5-44de-8b50-38dad83f2248.png">
 
-
 ### Postpage desktop
+![image](https://user-images.githubusercontent.com/45885777/185660536-f4f96455-2d47-4779-bb9a-a9ee1cc3abcd.png)
 
 ### Postpage mobile
+<img width="405" alt="image" src="https://user-images.githubusercontent.com/45885777/185660222-a5e61663-0ad5-42ac-ba60-6268b7931d08.png">
