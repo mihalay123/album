@@ -1,7 +1,10 @@
 # My Favorite Album test task
 It's an photo library application using Strapi 4 as backend and Next.js/React/SCSS as client
+
 You can publish your photo adding title, description and also delete
+
 You may see photo in detail
+
 App has an ok design, my bad :)
 
 ## Installation
