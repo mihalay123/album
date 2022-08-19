@@ -1,23 +1,56 @@
+@import 'App.module';
+
 .card {
-  width: 25%;
+  width: 100%;
   position: relative;
   cursor: pointer;
-  border-radius: 1rem;
   overflow: hidden;
+  z-index: 1;
+  transition-duration: 200ms;
+
+  &:hover {
+    transform: scale(105%);
+    z-index: 10;
+    -webkit-box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
+    -moz-box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
+    box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
+    .title {
+      opacity: 1;
+    }
+  }
+
+  @include sm {
+    width: 100%;
+  }
+
   div {
     width: 100%;
     padding-bottom: 100%;
+    transition-duration: inherit;
   }
 
   .title {
     color: white;
+    opacity: 1;
     z-index: 2;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
-    text-align: center;
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     width: 100%;
-    padding: 5%;
+    height: 100%;
+    padding: 15%;
+    transition-duration: inherit;
     bottom: 0;
-    font-size: 2rem;
+    font-size: 1rem;
+
+    @include sm {
+      opacity: 0;
+    }
   }
 }

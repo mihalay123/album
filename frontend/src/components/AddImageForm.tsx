@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { createImage } from '../api/images';
 
+import styles from '../../styles/AddImageForm.module.scss';
+
 const AddImageForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -44,26 +46,30 @@ const AddImageForm = () => {
   };
 
   return (
-    <form onSubmit={handleCreatePost}>
-      <input
-        type="text"
-        value={title}
-        placeholder="Title"
-        onChange={(e) => setTitle(e?.target.value)}
-      />
+    <form onSubmit={handleCreatePost} className={styles.form}>
+      <div className={styles.inputs}>
+        <input
+          type="text"
+          value={title}
+          placeholder="Title"
+          onChange={(e) => setTitle(e?.target.value)}
+        />
 
-      <textarea
-        value={description}
-        placeholder="Description"
-        onChange={(e) => setDescription(e.target.value)}
-      />
+        <textarea
+          value={description}
+          placeholder="Description"
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
 
-      <input
-        type="file"
-        accept="image/png, image/gif, image/jpeg"
-        onChange={onFileChange}
-      />
-      {preview && <img src={preview} alt="preview" />}
+      <div className={styles.file}>
+        <input
+          type="file"
+          accept="image/png, image/gif, image/jpeg"
+          onChange={onFileChange}
+        />
+        {preview && <img src={preview} alt="preview" />}{' '}
+      </div>
       <input type="submit" disabled={disabled} />
     </form>
   );

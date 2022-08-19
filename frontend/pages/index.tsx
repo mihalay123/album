@@ -75,24 +75,9 @@ const Home: NextPage = () => {
         <AddImageForm />
         <div className={styles.gallery}>
           {images?.length !== 0 &&
-            images.map((image) => (
-              // <div>
-              //   <div>
-              //     <Image
-              //       key={image.id}
-              //       src={image.url}
-              //       alt="img"
-              //       layout="fill"
-              //       objectFit="cover"
-              //     />
-              //   </div>
-              // </div>
-              <PostCard image={image} />
-            ))}
+            images.map((image) => <PostCard image={image} />)}
         </div>
       </main>
-
-      <footer className={styles.footer}></footer>
     </div>
   );
 };

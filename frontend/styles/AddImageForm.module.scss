@@ -1,0 +1,14 @@
+@import 'App.module';
+
+.form {
+  display: flex;
+  .inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .file {
+    display: flex;
+    flex-direction: column;
+  }
+}

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { getAllImageId, getImageById } from '../src/api/images';
 
 import { ImageType } from '.';
+
 const Post: NextPage = ({ image }) => {
   const { title, url } = image;
   return (
