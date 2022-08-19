@@ -1,4 +1,8 @@
 # My Favorite Album test task
+It's an photo library application using Strapi 4 as backend and Next.js/React/SCSS as client
+You can publish your photo adding title, description and also delete
+You may see photo in detail
+App has an ok design, my bad :)
 
 ## Installation
 Make sure you are using Node version ">=14.19.1 <=16.x.x"
@@ -20,3 +24,15 @@ cd frontend/
 yarn build
 yarn start
 ```
+
+## Screenshots
+### Homepage desktop
+![image](https://user-images.githubusercontent.com/45885777/185654783-c0f06477-3d9e-4cf9-bef6-79c3b72ffdc4.png)
+
+### Homepage mobile
+<img width="403" alt="image" src="https://user-images.githubusercontent.com/45885777/185654853-6c98b4fa-17f5-44de-8b50-38dad83f2248.png">
+
+
+### Postpage desktop
+
+### Postpage mobile
