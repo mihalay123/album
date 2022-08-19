@@ -85,6 +85,7 @@ const AddImageForm = ({ setImages }: Props) => {
         <input
           type="submit"
           className={buttonStyles.button}
+          value="Create"
           disabled={disabled}
         />
       </div>

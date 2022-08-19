@@ -12,7 +12,11 @@ interface Props {
 const PostCard = ({ image }: Props) => {
   const { id, title, url: imageUrl } = image;
   return (
-    <Link href={`/${id}`}>
+    <Link
+      href={`/${id}`}
+      target="_blank"
+      rel="noopener noreferrer stylesheet preload prefetch"
+    >
       <div className={styles.card}>
         <div>
           <span className={styles.title}>{title}</span>
@@ -22,6 +26,7 @@ const PostCard = ({ image }: Props) => {
             alt="img"
             layout="fill"
             objectFit="cover"
+            priority
             className={styles.image}
           />
         </div>

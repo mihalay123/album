@@ -9,7 +9,7 @@ const Header = ({}) => {
 
   return (
     <div className={styles.header}>
-      <Link href="/">
+      <Link href="/" target="_blank" rel="noopener noreferrer">
         <button disabled={disabled}>Back</button>
       </Link>
       <h1>My Favorite Album</h1>
