@@ -1,4 +1,4 @@
-@import 'App.module';
+@import '../../styles/App.module';
 
 .form {
   display: flex;
@@ -10,5 +10,9 @@
   .file {
     display: flex;
     flex-direction: column;
+  }
+
+  .preview {
+    width: 100%;
   }
 }

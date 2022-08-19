@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { createImage } from '../api/images';
+import FileInput from '../uikit/FileInput';
+import Input from '../uikit/Input';
+import Textarea from '../uikit/Textarea';
 
-import styles from '../../styles/AddImageForm.module.scss';
+import styles from './AddImageForm.module.scss';
 
 const AddImageForm = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState('');
 
   const disabled = !file || !title;
 
@@ -25,8 +27,6 @@ const AddImageForm = () => {
       return;
     }
 
-    setPreview(URL.createObjectURL(file));
-
     formData.append('data', JSON.stringify(data));
     formData.append('files.image', file, file.name);
 
@@ -37,25 +37,23 @@ const AddImageForm = () => {
     // @ts-ignore: Object is possibly 'null'.
     const newFile = event.target.files[0];
     if (!newFile) {
-      setPreview('');
       setFile(null);
       return;
     }
     setFile(newFile);
-    setPreview(URL.createObjectURL(newFile));
   };
 
   return (
     <form onSubmit={handleCreatePost} className={styles.form}>
       <div className={styles.inputs}>
-        <input
+        <Input
           type="text"
           value={title}
           placeholder="Title"
           onChange={(e) => setTitle(e?.target.value)}
         />
 
-        <textarea
+        <Textarea
           value={description}
           placeholder="Description"
           onChange={(e) => setDescription(e.target.value)}
@@ -63,13 +61,13 @@ const AddImageForm = () => {
       </div>
 
       <div className={styles.file}>
-        <input
-          type="file"
+        <FileInput
           accept="image/png, image/gif, image/jpeg"
           onChange={onFileChange}
+          file={file}
         />
-        {preview && <img src={preview} alt="preview" />}{' '}
       </div>
+
       <input type="submit" disabled={disabled} />
     </form>
   );

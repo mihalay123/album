@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '../../styles/PostCard.module.scss';
+import styles from './PostCard.module.scss';
 import { ImageType } from '../../pages';
 import { clientUrl } from '../utils/urls';
 

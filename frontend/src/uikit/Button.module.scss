@@ -1,0 +1,35 @@
+// .button {
+//   background-color: inherit;
+//   border: 1px solid white;
+//   color: white;
+//   padding: 0.5rem 2rem;
+
+//   .active {
+//     opacity: 0.5;
+//   }
+// }
+
+// .active {
+//   opacity: 0.5;
+// }
+
+.button {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition-duration: 200ms;
+
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 1);
+    color: rgba(0, 0, 0, 1);
+  }
+
+  &:disabled {
+    background-color: black;
+  }
+}

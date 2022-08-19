@@ -6,6 +6,7 @@ import AddImageForm from '../src/components/AddImageForm';
 import { getImages } from '../src/api/images';
 import { sortByDate, search } from '../src/utils';
 import PostCard from '../src/components/PostCard';
+import Input from '../src/uikit/Input';
 
 export interface ImageType {
   title: string;
@@ -66,7 +67,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <button onClick={handleSorting}>sort by date</button>
-        <input
+        <Input
           type="text"
           placeholder="Search"
           value={searchLine}

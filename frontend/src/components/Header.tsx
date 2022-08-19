@@ -1,4 +1,4 @@
-import styles from '../../styles/Header.module.scss';
+import styles from './Header.module.scss';
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ const Header = ({}) => {
   return (
     <div className={styles.header}>
       <Link href="/">
-        <button disabled={disabled}>Button</button>
+        <button disabled={disabled}>Back</button>
       </Link>
       <h1>My Favorite Album</h1>
     </div>
