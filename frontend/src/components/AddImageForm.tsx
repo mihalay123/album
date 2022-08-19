@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createImage } from '../api/images';
-import axios from 'axios';
 
 const AddImageForm = () => {
   const [title, setTitle] = useState('');
@@ -20,6 +19,10 @@ const AddImageForm = () => {
       liked: false
     };
 
+    if (!file) {
+      return;
+    }
+
     setPreview(URL.createObjectURL(file));
 
     formData.append('data', JSON.stringify(data));
@@ -29,13 +32,15 @@ const AddImageForm = () => {
   };
 
   const onFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!event.target.files[0]) {
+    // @ts-ignore: Object is possibly 'null'.
+    const newFile = event.target.files[0];
+    if (!newFile) {
       setPreview('');
       setFile(null);
       return;
     }
-    setFile(event.target.files[0]);
-    setPreview(URL.createObjectURL(event.target.files[0]));
+    setFile(newFile);
+    setPreview(URL.createObjectURL(newFile));
   };
 
   return (
@@ -43,11 +48,13 @@ const AddImageForm = () => {
       <input
         type="text"
         value={title}
+        placeholder="Title"
         onChange={(e) => setTitle(e?.target.value)}
       />
 
       <textarea
         value={description}
+        placeholder="Description"
         onChange={(e) => setDescription(e.target.value)}
       />
 

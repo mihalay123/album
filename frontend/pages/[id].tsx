@@ -1,14 +1,37 @@
 import { NextPage } from 'next';
+import Image from 'next/image';
+import { getAllImageId, getImageById } from '../src/api/images';
 
-const Post: NextPage = () => {
-  return <div></div>;
+import { ImageType } from '.';
+const Post: NextPage = ({ image }) => {
+  const { title, url } = image;
+  return (
+    <div>
+      {title}
+      <Image src={url} width={400} height={400}></Image>
+    </div>
+  );
 };
 
 export default Post;
 
-// export async function getStaticPaths() {
-//   return {
-//     paths,
-//     fallback: false
-//   }
-// }
+export async function getStaticPaths() {
+  let ids = [Number];
+  await getAllImageId().then((response) => (ids = response));
+  const paths = ids.map((id) => ({
+    params: {
+      id: id.toString()
+    }
+  }));
+  return {
+    paths,
+    fallback: false
+  };
+}
+
+export async function getStaticProps({ params }: any) {
+  console.log(params);
+  let image: ImageType | {} = {};
+  await getImageById(params.id).then((response) => (image = response));
+  return { props: { image } };
+}

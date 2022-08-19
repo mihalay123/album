@@ -1,11 +1,11 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
 import AddImageForm from '../src/components/AddImageForm';
 import { getImages } from '../src/api/images';
 import { sortByDate, search } from '../src/utils';
+import PostCard from '../src/components/PostCard';
 
 export interface ImageType {
   title: string;
@@ -66,22 +66,28 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <button onClick={handleSorting}>sort by date</button>
-        <input type="text" value={searchLine} onChange={handleSearch} />
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchLine}
+          onChange={handleSearch}
+        />
         <AddImageForm />
         <div className={styles.gallery}>
           {images?.length !== 0 &&
             images.map((image) => (
-              <div>
-                <div>
-                  <Image
-                    key={image.id}
-                    src={image.url}
-                    alt="img"
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-              </div>
+              // <div>
+              //   <div>
+              //     <Image
+              //       key={image.id}
+              //       src={image.url}
+              //       alt="img"
+              //       layout="fill"
+              //       objectFit="cover"
+              //     />
+              //   </div>
+              // </div>
+              <PostCard image={image} />
             ))}
         </div>
       </main>

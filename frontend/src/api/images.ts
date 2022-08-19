@@ -1,8 +1,8 @@
 import { ImageType } from '../../pages';
 import axios from 'axios';
+import { serverUrl, apiPath } from '../utils/urls';
 
-const url = 'http://localhost:1337';
-const apiUrl = '/api/images';
+const url = serverUrl;
 
 interface DataType {
   id: number;
@@ -32,7 +32,7 @@ const formImageObj = (item: DataType) => {
 };
 
 export const getImages = async () => {
-  const response = await axios.get(`${url}${apiUrl}?populate=image`);
+  const response = await axios.get(`${url}${apiPath}?populate=image`);
   const data = response.data.data;
   const images = data.reduce((acc: ImageType[], item: DataType) => {
     const imageObj = formImageObj(item);
@@ -42,14 +42,14 @@ export const getImages = async () => {
 };
 
 export const getAllImageId = async () => {
-  const response = await axios.get(`${url}${apiUrl}?populate=image`);
+  const response = await axios.get(`${url}${apiPath}?populate=image`);
   const data = response.data.data;
   const ids = data.map((item: ImageType) => item.id);
   return ids;
 };
 
 export const getImageById = async (id: number) => {
-  const response = await axios.get(`${url}${apiUrl}/${id}?populate=image`);
+  const response = await axios.get(`${url}${apiPath}/${id}?populate=image`);
   const data = response.data.data;
   return formImageObj(data);
 };
@@ -57,9 +57,9 @@ export const getImageById = async (id: number) => {
 export const createImage = (data: FormData) =>
   axios({
     method: 'POST',
-    url: `${url}${apiUrl}`,
+    url: `${url}${apiPath}`,
     data
   });
 
 export const deleteImage = (id: number) =>
-  axios.delete(`${url}${apiUrl}/${id}`);
+  axios.delete(`${url}${apiPath}/${id}`);
