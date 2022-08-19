@@ -30,7 +30,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: any) {
-  console.log(params);
   let image: ImageType | {} = {};
   await getImageById(params.id).then((response) => (image = response));
   return { props: { image } };

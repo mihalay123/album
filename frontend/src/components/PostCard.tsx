@@ -10,18 +10,19 @@ interface Props {
 }
 
 const PostCard = ({ image }: Props) => {
-  const { id, url: imageUrl } = image;
+  const { id, title, url: imageUrl } = image;
   return (
-    <Link href={clientUrl + id} className={styles.card}>
+    <Link href={`/${id}`}>
       <div className={styles.card}>
         <div>
-          hello
+          <span className={styles.title}>{title}</span>
           <Image
             key={id}
             src={imageUrl}
             alt="img"
             layout="fill"
             objectFit="cover"
+            className={styles.image}
           />
         </div>
       </div>
