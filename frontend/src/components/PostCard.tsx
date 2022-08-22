@@ -3,7 +3,6 @@ import Link from 'next/link';
 
 import styles from './PostCard.module.scss';
 import { ImageType } from '../../pages';
-import { clientUrl } from '../utils/urls';
 
 interface Props {
   image: ImageType;

@@ -32,20 +32,28 @@ const formImageObj = (item: DataType) => {
 };
 
 export const getImages = async () => {
-  const response = await axios.get(`${url}${apiPath}?populate=image`);
-  const data = response.data.data;
-  const images = data.reduce((acc: ImageType[], item: DataType) => {
-    const imageObj = formImageObj(item);
-    return [...acc, imageObj];
-  }, []);
-  return images;
+  try {
+    const response = await axios.get(`${url}${apiPath}?populate=image`);
+    const data = response.data.data;
+    const images = data.reduce((acc: ImageType[], item: DataType) => {
+      const imageObj = formImageObj(item);
+      return [...acc, imageObj];
+    }, []);
+    return images;
+  } catch (e) {
+    return [];
+  }
 };
 
 export const getAllImageId = async () => {
-  const response = await axios.get(`${url}${apiPath}?populate=image`);
-  const data = response.data.data;
-  const ids = data.map((item: ImageType) => item.id);
-  return ids;
+  try {
+    const response = await axios.get(`${url}${apiPath}?populate=image`);
+    const data = response.data.data;
+    const ids = data.map((item: ImageType) => item.id);
+    return ids;
+  } catch (e) {
+    return [];
+  }
 };
 
 export const getImageById = async (id: number) => {

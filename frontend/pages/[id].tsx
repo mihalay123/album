@@ -10,19 +10,23 @@ import { useRouter } from 'next/router';
 
 interface Props {
   image: ImageType;
+  notFound: boolean;
 }
 
-const Post: NextPage<Props> = ({ image }) => {
+const Post: NextPage<Props> = ({ image, notFound }) => {
   const { title, url, description, createdAt, id } = image;
 
   const router = useRouter();
-
   const date = new Date(createdAt);
 
   const handleDelete = async () => {
     await deleteImage(id);
     router.push('/');
   };
+
+  if (notFound) {
+    return <div className={styles.notFound}>Not Found</div>;
+  }
 
   return (
     <div className={styles.container}>
@@ -59,21 +63,30 @@ const Post: NextPage<Props> = ({ image }) => {
 export default Post;
 
 export async function getStaticPaths() {
-  let ids = [Number];
-  await getAllImageId().then((response) => (ids = response));
-  const paths = ids.map((id) => ({
-    params: {
-      id: id.toString()
-    }
-  }));
-  return {
-    paths,
-    fallback: 'blocking'
-  };
+  try {
+    let ids = [Number];
+    await getAllImageId()
+      .then((response) => (ids = response))
+      .catch((err) => console.log('ERROR'));
+    const paths = ids.map((id) => ({
+      params: {
+        id: id.toString()
+      }
+    }));
+    return {
+      paths,
+      fallback: 'blocking'
+    };
+  } catch (e) {
+    return { paths: [{}], fallback: 'blocking' };
+  }
 }
 
 export async function getStaticProps({ params }: any) {
   let image: ImageType | {} = {};
-  await getImageById(params.id).then((response) => (image = response));
-  return { props: { image } };
+  let notFound = false;
+  await getImageById(params.id)
+    .then((response) => (image = response))
+    .catch((err) => (notFound = true));
+  return { props: { image, notFound } };
 }

@@ -6,7 +6,7 @@
 }
 
 .main {
-  min-height: 100vh;
+  height: calc(100vh - $header-height);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -40,4 +40,15 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 0;
   }
+}
+
+.placeholder {
+  width: 100%;
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  -webkit-box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
+  -moz-box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
+  box-shadow: 2px 4px 13px -5px rgba(34, 60, 80, 0.14);
 }

@@ -79,10 +79,15 @@ const Home: NextPage = () => {
           />
         </div>
 
-        <div className={styles.gallery}>
-          {images?.length !== 0 &&
-            images.map((image) => <PostCard key={image.id} image={image} />)}
-        </div>
+        {images?.length !== 0 ? (
+          <div className={styles.gallery}>
+            {images.map((image) => (
+              <PostCard key={image.id} image={image} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.placeholder}>There is no photo yet</div>
+        )}
       </main>
     </div>
   );
