@@ -28,6 +28,13 @@ yarn build
 yarn start
 ```
 
+### URLs
+#### backend
+http://localhost:3000/
+
+#### frontend
+http://localhost:1337/
+
 ## Screenshots
 ### Homepage desktop
 ![image](https://user-images.githubusercontent.com/45885777/185654783-c0f06477-3d9e-4cf9-bef6-79c3b72ffdc4.png)
